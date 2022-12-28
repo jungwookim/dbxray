@@ -9,7 +9,12 @@
    :clob       'string?
    :text       'string?
    :varchar    'string?
-   :timestamp  'inst?})
+   :timestamp  'inst?
+   :bit        'boolean?
+   :datetime   'inst?
+   :json       'string?
+   :binary     'any?
+   :char       'string?})
 
 (defn- table-spec-name
   [table-name]
