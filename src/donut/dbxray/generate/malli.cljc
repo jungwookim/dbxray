@@ -32,7 +32,7 @@
   [xray table-name column-name {:keys [_unqualified-column] :as opts}]
   (let [{:keys [column-type primary-key? nullable? refers-to]} (get-in xray [table-name :columns column-name])]
     [(column-spec-name table-name column-name opts)
-     {:optional? (boolean nullable?)}
+     {:optional (boolean nullable?)}
 
      (cond
        refers-to
