@@ -11,9 +11,8 @@
    :varchar    'string?
    :timestamp  'inst?
    :bit        'boolean?
-   :datetime   'inst?
    :json       'string?
-   :binary     'any?
+   :binary     'bytes?
    :char       'string?})
 
 (defn- table-spec-name
