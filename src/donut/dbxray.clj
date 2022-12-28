@@ -206,11 +206,16 @@
      :table-order (vec (table-fk-sort table-xray))}))
 
 ;; convenience aliases
+;; opts
+;; - unqualified-column(optional) (boolean)
 (def clojure-spec clojure-spec/generate)
-(def malli-schema malli/generate)
+(defn malli-schema
+  ([dbxray]
+   (malli/generate dbxray nil))
+  ([dbxray opts]
+  (malli/generate dbxray opts)))
 (def plumatic-schema plumatic-schema/generate)
 (def datapotato-schema datapotato/generate)
-
 
 (comment
   (get-index-info (prep (jdbc/get-connection
