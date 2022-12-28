@@ -107,18 +107,18 @@ You can generate basic specs or schemas from this metadata:
 ;; =>
 [(def User
    [:map
-    [:users/id {:optional? false} pos-int?]
-    [:users/username {:optional? false} string?]])
+    [:users/id {:optional false} pos-int?]
+    [:users/username {:optional false} string?]])
  (def TodoList
    [:map
-    [:todo_lists/id {:optional? false} pos-int?]
-    [:todo_lists/user_id {:optional? false} pos-int?]
-    [:todo_lists/name {:optional? false} string?]])
+    [:todo_lists/id {:optional false} pos-int?]
+    [:todo_lists/user_id {:optional false} pos-int?]
+    [:todo_lists/name {:optional false} string?]])
  (def Todo
    [:map
-    [:todos/id {:optional? false} pos-int?]
-    [:todos/todo_list_id {:optional? false} pos-int?]
-    [:todos/description {:optional? false} string?]])]
+    [:todos/id {:optional false} pos-int?]
+    [:todos/todo_list_id {:optional false} pos-int?]
+    [:todos/description {:optional false} string?]])]
     
 (dbx/clojure-spec xray)
 ;; =>
