@@ -47,7 +47,9 @@
        (:integer-pk column-types)
 
        :else
-       (column-type column-types [:TODO/column-type-not-recognized column-type]))]))
+       (if nullable?
+         [:or 'nil? (column-type column-types [:TODO/column-type-not-recognized column-type])]
+         (column-type column-types [:TODO/column-type-not-recognized column-type])))]))
 
 (defn generate
   [{:keys [tables table-order]} opts]
