@@ -23,13 +23,18 @@
       csk/->PascalCaseSymbol))
 
 (defn- column-spec-name
-  [table-name column-name {:keys [unqualified-column] :as _opts}]
-  (if unqualified-column
-    (keyword (name column-name))
-    (keyword (name table-name) (name column-name))))
+  [table-name column-name {:keys [unqualified-column?
+                                  kebab-case?]
+                           :as   _opts}]
+  (let [column-name (if kebab-case? (csk/->kebab-case-keyword column-name) column-name)
+        table-name  (if kebab-case? (csk/->kebab-case-keyword table-name) table-name)]
+    (if unqualified-column?
+      (keyword (name column-name))
+      (keyword (name table-name) (name column-name)))))
 
 (defn- column-spec
-  [xray table-name column-name {:keys [_unqualified-column] :as opts}]
+  [xray table-name column-name {:keys [_unqualified-column?]
+                                :as   opts}]
   (let [{:keys [column-type primary-key? nullable? refers-to]} (get-in xray [table-name :columns column-name])]
     [(column-spec-name table-name column-name opts)
      {:optional (boolean nullable?)}
